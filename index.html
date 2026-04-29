@@ -1,0 +1,187 @@
+# Wedding-of
+Priti and Sagar 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priti & Sagar's Royal Wedding</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --royal-gold: #D4AF37;
+            --deep-teal: #008080;
+            --lotus-pink: #FF77FF;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: #1a1a1a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- ENVELOPE & DOOR SECTION --- */
+        #hero-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #2c3e50, #000);
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mahal-door {
+            width: 50%; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://unsplash.com');
+            background-size: cover;
+            border: 5px solid var(--royal-gold);
+            transition: 2s ease-in-out;
+        }
+
+        .wax-stamp {
+            position: absolute;
+            z-index: 1001;
+            width: 120px; height: 120px;
+            background: #b22222;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            font-size: 50px;
+            border: 4px solid #8b0000;
+            animation: pulse 2s infinite;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-invitation {
+            background: url('https://transparenttextures.com'), #fff9f0;
+            min-height: 200vh;
+            padding: 50px 20px;
+            text-align: center;
+            opacity: 0;
+            transition: 2s;
+        }
+
+        .lotus-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: url('https://pixabay.com');
+            background-repeat: repeat;
+            opacity: 0.1;
+            animation: drift 20s linear infinite;
+        }
+
+        h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; color: #8b0000; }
+        h2 { font-family: 'Cinzel Decorative', cursive; color: var(--deep-teal); }
+
+        .countdown {
+            display: flex; justify-content: center; gap: 20px;
+            margin: 40px 0; font-size: 1.5rem;
+        }
+
+        .card {
+            max-width: 800px; margin: 50px auto;
+            padding: 40px; border: 15px double var(--royal-gold);
+            background: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.1);} 100% {transform: scale(1);} }
+        @keyframes drift { from {background-position: 0 0;} to {background-position: 500px 500px;} }
+
+        .opened-left { transform: translateX(-100%); }
+        .opened-right { transform: translateX(100%); }
+        .fade-in { opacity: 1 !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <iframe id="audio" style="display:none" width="560" height="315" src="https://youtube.com" allow="autoplay"></iframe>
+
+    <!-- Envelope & Doors -->
+    <div id="hero-overlay">
+        <div class="wax-stamp" onclick="openInvitation()">🪷</div>
+        <div class="mahal-door" id="door-left"></div>
+        <div class="mahal-door" id="door-right"></div>
+    </div>
+
+    <!-- Invitation Body -->
+    <div class="lotus-bg"></div>
+    <div class="main-invitation" id="invitation">
+        <div class="peacock-icon">🦚</div>
+        <h1>Priti & Sagar</h1>
+        <p style="font-size: 1.2rem;">Are getting married!</p>
+
+        <div class="countdown" id="timer">
+            <!-- JS updates this -->
+        </div>
+
+        <div class="card">
+            <h2>The Wedding Ceremony</h2>
+            <p><strong>Date:</strong> 3rd May 2026</p>
+            <p><strong>Time:</strong> 12:35 p.m.</p>
+            <p><strong>Venue:</strong> Tondapur, Taluka Jamner, Dist. Jalgaon</p>
+            <a href="https://google.com" target="_blank">📍 View on Google Maps</a>
+        </div>
+
+        <div class="card">
+            <h2>Haldi Ceremony</h2>
+            <p><strong>Date:</strong> 2nd May 2026</p>
+            <p><strong>Time:</strong> 07:00 p.m.</p>
+            <p><strong>Venue:</strong> Tondapur, Taluka Jamner, Dist. Jalgaon</p>
+        </div>
+
+        <div class="card">
+            <h2>A Message from the Heart</h2>
+            <p><i>"From Priti: I can't wait to start this chaotic and beautiful journey with you."</i></p>
+            <p><i>"From Sagar: Let's make every second of this life as vibrant as a peacock's feather."</i></p>
+        </div>
+
+        <div class="card">
+            <h2>RSVP & Gallery</h2>
+            <p>Join our digital celebration by sharing your wishes!</p>
+            <button onclick="alert('RSVP Feature Coming Soon!')">RSVP Now</button>
+        </div>
+    </div>
+
+    <script>
+        function openInvitation() {
+            // Play Music (Note: Browsers require user interaction to play audio)
+            var audio = document.getElementById("audio");
+            audio.src += "&autoplay=1";
+
+            // Open Doors
+            document.getElementById('door-left').classList.add('opened-left');
+            document.getElementById('door-right').classList.add('opened-right');
+            document.querySelector('.wax-stamp').style.display = 'none';
+            
+            // Fade in Content
+            setTimeout(() => {
+                document.getElementById('hero-overlay').style.pointerEvents = 'none';
+                document.getElementById('invitation').classList.add('fade-in');
+            }, 1000);
+        }
+
+        // Countdown Logic
+        const weddingDate = new Date("May 3, 2026 12:35:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("timer").innerHTML = `<div>${days}d</div> <div>${hours}h</div> <div>${seconds}s</div>`;
+        }, 1000);
+    </script>
+</body>
+</html>
